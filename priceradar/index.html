@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PriceRadar — мониторинг цен конкурентов на Wildberries</title>
+<meta name="description" content="PriceRadar следит за ценами и остатками конкурентов на Wildberries и присылает уведомления в Telegram.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="glow glow-1"></div>
+<div class="glow glow-2"></div>
+
+<header class="nav" id="top">
+  <div class="container nav__row">
+    <a href="#top" class="logo"><span class="logo__dot"></span>PriceRadar</a>
+    <nav class="nav__links" id="menu">
+      <a href="#features">Возможности</a>
+      <a href="#how">Как работает</a>
+      <a href="#pricing">Тарифы</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+    <a href="#pricing" class="btn btn--small nav__cta">Попробовать</a>
+    <button class="burger" id="burger" aria-label="Меню"><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+  <section class="hero container">
+    <div class="hero__text reveal">
+      <span class="pill">Для селлеров Wildberries</span>
+      <h1>Узнавайте о&nbsp;снижении цен конкурентов <span class="grad">раньше покупателей</span></h1>
+      <p class="lead">PriceRadar каждые 15 минут проверяет цены и остатки нужных вам товаров и сразу пишет в Telegram, если что-то изменилось.</p>
+      <div class="hero__actions">
+        <a href="#pricing" class="btn">Начать бесплатно</a>
+        <a href="#how" class="btn btn--ghost">Как это работает</a>
+      </div>
+      <ul class="hero__stats">
+        <li><b>15 мин</b><span>частота проверки</span></li>
+        <li><b>7 дней</b><span>история цен</span></li>
+        <li><b>0 ₽</b><span>на старте</span></li>
+      </ul>
+    </div>
+
+    <div class="dash reveal" aria-hidden="true">
+      <div class="dash__head">
+        <span class="dash__dots"><i></i><i></i><i></i></span>
+        <span class="dash__title">Конкуренты · Кроссовки беговые</span>
+      </div>
+      <div class="dash__chart">
+        <svg viewBox="0 0 320 120" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="area" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#7c5cff" stop-opacity=".45"/>
+              <stop offset="1" stop-color="#7c5cff" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path d="M0 40 L45 38 L90 44 L135 42 L180 50 L225 78 L270 74 L320 82 L320 120 L0 120Z" fill="url(#area)"/>
+          <path d="M0 40 L45 38 L90 44 L135 42 L180 50 L225 78 L270 74 L320 82" fill="none" stroke="#9b87ff" stroke-width="2.5"/>
+          <path d="M0 62 L45 60 L90 61 L135 60 L180 59 L225 60 L270 58 L320 59" fill="none" stroke="#3ddc97" stroke-width="2" stroke-dasharray="5 5"/>
+        </svg>
+        <span class="tag tag--down">−18% за сутки</span>
+      </div>
+      <ul class="dash__list">
+        <li><span>Конкурент №1</span><span class="price">3 490 ₽ <em class="down">−760</em></span></li>
+        <li><span>Конкурент №2</span><span class="price">3 990 ₽ <em>0</em></span></li>
+        <li><span>Ваш товар</span><span class="price">4 150 ₽ <em class="mine">вы</em></span></li>
+      </ul>
+      <div class="toast">
+        <span class="toast__icon">✈</span>
+        <div><b>Конкурент №1 снизил цену</b><small>4 250 → 3 490 ₽, осталось 38 шт.</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="logos container reveal">
+    <p>Работает с товарами любых категорий</p>
+    <div class="logos__row">
+      <span>Одежда</span><span>Электроника</span><span>Дом</span><span>Красота</span><span>Спорт</span><span>Детям</span>
+    </div>
+  </section>
+
+  <section class="section container" id="features">
+    <div class="section__head reveal">
+      <span class="pill">Возможности</span>
+      <h2>Всё, чтобы не проиграть в цене</h2>
+    </div>
+    <div class="grid grid--3">
+      <article class="card reveal"><div class="card__icon">⚡</div><h3>Мгновенные уведомления</h3><p>Снижение цены, появление скидки, товар закончился — сообщение приходит в Telegram в течение 15 минут.</p></article>
+      <article class="card reveal"><div class="card__icon">📈</div><h3>История и графики</h3><p>Как менялась цена за неделю, у кого и когда были акции. Видно стратегию конкурента, а не только цифру.</p></article>
+      <article class="card reveal"><div class="card__icon">📦</div><h3>Остатки на складах</h3><p>Если у конкурента заканчивается товар — это момент поднять цену или вложиться в рекламу.</p></article>
+      <article class="card reveal"><div class="card__icon">🔗</div><h3>Связка «мой товар — конкуренты»</h3><p>Привяжите конкурентов к своим карточкам и сравнивайте в одном отчёте.</p></article>
+      <article class="card reveal"><div class="card__icon">📊</div><h3>Отчёт в Excel</h3><p>Выгрузка цен, скидок и остатков по всем товарам в один файл — для себя или менеджера.</p></article>
+      <article class="card reveal"><div class="card__icon">☀️</div><h3>Ежедневная сводка</h3><p>Каждое утро короткий отчёт: что изменилось за сутки и на что обратить внимание.</p></article>
+    </div>
+  </section>
+
+  <section class="section container" id="how">
+    <div class="section__head reveal">
+      <span class="pill">Как работает</span>
+      <h2>Три шага до первого уведомления</h2>
+    </div>
+    <ol class="steps">
+      <li class="reveal"><span class="steps__n">1</span><h3>Добавьте товары</h3><p>Отправьте боту ссылки или артикулы своих товаров и конкурентов.</p></li>
+      <li class="reveal"><span class="steps__n">2</span><h3>Настройте порог</h3><p>Например: сообщать, если цена упала больше чем на 5%.</p></li>
+      <li class="reveal"><span class="steps__n">3</span><h3>Получайте сигналы</h3><p>Бот пишет сам — вам остаётся решить, что делать с ценой.</p></li>
+    </ol>
+  </section>
+
+  <section class="section container" id="pricing">
+    <div class="section__head reveal">
+      <span class="pill">Тарифы</span>
+      <h2>Платите за количество товаров</h2>
+      <div class="switch" role="group" aria-label="Период оплаты">
+        <button class="switch__btn is-active" data-period="month">Месяц</button>
+        <button class="switch__btn" data-period="year">Год <small>−20%</small></button>
+      </div>
+    </div>
+    <div class="grid grid--3 pricing">
+      <article class="plan reveal">
+        <h3>Старт</h3><p class="plan__desc">Попробовать на паре товаров</p>
+        <p class="plan__price"><span data-month="0" data-year="0">0</span> ₽<small>/мес</small></p>
+        <ul><li>до 10 товаров</li><li>проверка раз в час</li><li>уведомления в Telegram</li></ul>
+        <a href="#top" class="btn btn--ghost btn--block">Начать</a>
+      </article>
+      <article class="plan plan--hot reveal">
+        <span class="plan__badge">Популярный</span>
+        <h3>Селлер</h3><p class="plan__desc">Для одного магазина</p>
+        <p class="plan__price"><span data-month="990" data-year="790">990</span> ₽<small>/мес</small></p>
+        <ul><li>до 200 товаров</li><li>проверка каждые 15 минут</li><li>история цен и графики</li><li>отчёт в Excel</li></ul>
+        <a href="#top" class="btn btn--block">Подключить</a>
+      </article>
+      <article class="plan reveal">
+        <h3>Бизнес</h3><p class="plan__desc">Для нескольких магазинов</p>
+        <p class="plan__price"><span data-month="2490" data-year="1990">2 490</span> ₽<small>/мес</small></p>
+        <ul><li>до 1 000 товаров</li><li>несколько пользователей</li><li>ежедневная сводка</li><li>приоритетная поддержка</li></ul>
+        <a href="#top" class="btn btn--ghost btn--block">Подключить</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="section container section--narrow" id="faq">
+    <div class="section__head reveal">
+      <span class="pill">Вопросы</span>
+      <h2>Частые вопросы</h2>
+    </div>
+    <div class="faq">
+      <details class="reveal"><summary>Нужен ли доступ к моему кабинету продавца?</summary><p>Нет. PriceRadar смотрит только открытые карточки товаров — те же данные, что видит покупатель.</p></details>
+      <details class="reveal"><summary>Как быстро приходит уведомление?</summary><p>В среднем через 5–15 минут после изменения цены, в зависимости от тарифа.</p></details>
+      <details class="reveal"><summary>Можно отслеживать Ozon?</summary><p>Сейчас поддерживается Wildberries. Ozon — в планах на ближайшие месяцы.</p></details>
+      <details class="reveal"><summary>Что если я передумаю?</summary><p>Отключите тариф в любой момент — деньги за неиспользованные дни вернём.</p></details>
+    </div>
+  </section>
+
+  <section class="cta container reveal">
+    <h2>Начните следить за конкурентами сегодня</h2>
+    <p>Первые 10 товаров — бесплатно и без привязки карты.</p>
+    <a href="#pricing" class="btn">Попробовать бесплатно</a>
+  </section>
+</main>
+
+<footer class="footer container">
+  <span>© 2026 PriceRadar</span>
+  <span>Демо-проект: вёрстка и дизайн — Фёдор</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

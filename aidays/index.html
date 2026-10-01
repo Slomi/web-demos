@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Days 2026 — конференция о прикладном ИИ</title>
+<meta name="description" content="Два дня докладов и воркшопов о том, как внедрять ИИ в продукты. Москва, 20–21 ноября 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav__row">
+    <a href="#" class="logo">AI&nbsp;Days<sup>26</sup></a>
+    <nav class="nav__links" id="menu">
+      <a href="#program">Программа</a>
+      <a href="#speakers">Спикеры</a>
+      <a href="#tickets">Билеты</a>
+      <a href="#venue">Место</a>
+    </nav>
+    <a href="#tickets" class="btn btn--dark nav__cta">Купить билет</a>
+    <button class="burger" id="burger" aria-label="Меню"><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <p class="hero__meta"><span>20–21 ноября 2026</span><span>Москва · Технопарк</span><span>+ онлайн</span></p>
+    <h1 class="hero__title">Прикладной<br><span class="outline">искусственный</span><br>интеллект</h1>
+    <div class="hero__bottom">
+      <p class="hero__lead">Два дня про то, как ИИ работает в реальных продуктах: доклады от инженеров, разборы кейсов и практические воркшопы.</p>
+      <div class="timer" id="timer" aria-label="До начала конференции">
+        <div><b data-t="d">00</b><span>дней</span></div>
+        <div><b data-t="h">00</b><span>часов</span></div>
+        <div><b data-t="m">00</b><span>минут</span></div>
+        <div><b data-t="s">00</b><span>секунд</span></div>
+      </div>
+    </div>
+    <div class="hero__shape" aria-hidden="true"></div>
+  </section>
+
+  <section class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>LLM в продакшене</span><span>✦</span><span>RAG и поиск</span><span>✦</span><span>Агенты</span><span>✦</span><span>Компьютерное зрение</span><span>✦</span><span>MLOps</span><span>✦</span><span>Этика и безопасность</span><span>✦</span>
+      <span>LLM в продакшене</span><span>✦</span><span>RAG и поиск</span><span>✦</span><span>Агенты</span><span>✦</span><span>Компьютерное зрение</span><span>✦</span><span>MLOps</span><span>✦</span><span>Этика и безопасность</span><span>✦</span>
+    </div>
+  </section>
+
+  <section class="stats wrap">
+    <div><b>40+</b><span>докладов</span></div>
+    <div><b>12</b><span>воркшопов</span></div>
+    <div><b>1 500</b><span>участников</span></div>
+    <div><b>2</b><span>дня</span></div>
+  </section>
+
+  <section class="section wrap" id="program">
+    <h2 class="h2">Программа</h2>
+    <div class="tabs" role="tablist">
+      <button class="tab is-active" data-day="1" role="tab">День 1 · 20 ноября</button>
+      <button class="tab" data-day="2" role="tab">День 2 · 21 ноября</button>
+    </div>
+    <ol class="program is-active" data-day="1">
+      <li><time>10:00</time><div><h3>Открытие: где ИИ уже окупается</h3><p>Главный зал · Анна Ветрова</p></div><span class="chip">Keynote</span></li>
+      <li><time>11:00</time><div><h3>RAG без галлюцинаций: как отвечать только по документам</h3><p>Зал A · Игорь Савельев</p></div><span class="chip chip--blue">Доклад</span></li>
+      <li><time>12:30</time><div><h3>LLM-агенты в поддержке: 60% обращений без оператора</h3><p>Зал B · Мария Ли</p></div><span class="chip chip--blue">Кейс</span></li>
+      <li><time>14:30</time><div><h3>Воркшоп: собираем Telegram-бота с LLM за час</h3><p>Лаборатория · Денис Орлов</p></div><span class="chip chip--lime">Воркшоп</span></li>
+      <li><time>16:30</time><div><h3>Сколько стоит ИИ: считаем токены и инфраструктуру</h3><p>Зал A · Ольга Нестерова</p></div><span class="chip chip--blue">Доклад</span></li>
+    </ol>
+    <ol class="program" data-day="2">
+      <li><time>10:00</time><div><h3>Компьютерное зрение на складе и в рознице</h3><p>Главный зал · Павел Ким</p></div><span class="chip">Keynote</span></li>
+      <li><time>11:30</time><div><h3>MLOps для маленькой команды</h3><p>Зал A · Екатерина Белова</p></div><span class="chip chip--blue">Доклад</span></li>
+      <li><time>13:00</time><div><h3>Воркшоп: оцениваем качество ответов модели</h3><p>Лаборатория · Артём Зуев</p></div><span class="chip chip--lime">Воркшоп</span></li>
+      <li><time>15:00</time><div><h3>Безопасность LLM: промпт-инъекции и как от них защищаться</h3><p>Зал B · Нина Громова</p></div><span class="chip chip--blue">Доклад</span></li>
+      <li><time>17:00</time><div><h3>Закрытие и нетворкинг</h3><p>Атриум</p></div><span class="chip">Party</span></li>
+    </ol>
+  </section>
+
+  <section class="section wrap" id="speakers">
+    <h2 class="h2">Спикеры</h2>
+    <div class="speakers">
+      <article><div class="ava" style="--c1:#ff5b2e;--c2:#ffb02e">АВ</div><h3>Анна Ветрова</h3><p>CTO, ИИ-платформа для ритейла</p></article>
+      <article><div class="ava" style="--c1:#2e6bff;--c2:#7ab8ff">ИС</div><h3>Игорь Савельев</h3><p>Lead ML-инженер, поиск</p></article>
+      <article><div class="ava" style="--c1:#111;--c2:#555">МЛ</div><h3>Мария Ли</h3><p>Руководитель поддержки, финтех</p></article>
+      <article><div class="ava" style="--c1:#b6e62e;--c2:#2ee6a8">ДО</div><h3>Денис Орлов</h3><p>Разработчик ботов и агентов</p></article>
+      <article><div class="ava" style="--c1:#c02eff;--c2:#ff2e9a">ОН</div><h3>Ольга Нестерова</h3><p>FinOps, облачная инфраструктура</p></article>
+      <article><div class="ava" style="--c1:#ff2e4d;--c2:#ff8a2e">ПК</div><h3>Павел Ким</h3><p>Head of Computer Vision</p></article>
+    </div>
+  </section>
+
+  <section class="section wrap" id="tickets">
+    <h2 class="h2">Билеты</h2>
+    <div class="tickets">
+      <article class="ticket">
+        <h3>Онлайн</h3><p class="ticket__price">2 900 ₽</p>
+        <ul><li>трансляция всех залов</li><li>записи докладов</li><li>чат участников</li></ul>
+        <a href="#tickets" class="btn btn--line">Выбрать</a>
+      </article>
+      <article class="ticket ticket--accent">
+        <h3>Стандарт</h3><p class="ticket__price">9 900 ₽</p>
+        <ul><li>оба дня офлайн</li><li>все доклады и воркшопы</li><li>обед и кофе-брейки</li><li>записи докладов</li></ul>
+        <a href="#tickets" class="btn btn--dark">Выбрать</a>
+      </article>
+      <article class="ticket">
+        <h3>Студент</h3><p class="ticket__price">3 900 ₽</p>
+        <ul><li>оба дня офлайн</li><li>по студенческому билету</li><li>карьерная зона</li></ul>
+        <a href="#tickets" class="btn btn--line">Выбрать</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="section wrap venue" id="venue">
+    <div>
+      <h2 class="h2">Место</h2>
+      <p class="venue__addr">Москва, Технопарк<br>5 минут пешком от метро</p>
+      <p class="venue__note">Для онлайн-участников — трансляция в хорошем качестве и чат со спикерами.</p>
+    </div>
+    <div class="venue__map" aria-hidden="true"><span class="pin"></span></div>
+  </section>
+</main>
+
+<footer class="footer wrap">
+  <span class="logo">AI&nbsp;Days<sup>26</sup></span>
+  <span>Демо-проект: вёрстка и дизайн — Фёдор. Конференция вымышленная.</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
