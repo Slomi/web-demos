@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Habitly — трекер привычек</title>
+<meta name="description" content="Habitly помогает выработать привычки за 21 день: напоминания, серии и статистика.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root { --bg: #ffffff; --soft: #f3f1ff; --ink: #17153a; --muted: #6b6a85; --violet: #6c4cff; --pink: #ff6fae; --mint: #2ed1a2; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body { font-family: "Plus Jakarta Sans", system-ui, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
+a { color: inherit; text-decoration: none; }
+.wrap { width: min(1160px, 100% - 32px); margin-inline: auto; }
+h1, h2, h3 { line-height: 1.12; letter-spacing: -.02em; }
+
+.nav__row { display: flex; align-items: center; gap: 28px; height: 76px; }
+.logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 22px; }
+.logo i { width: 30px; height: 30px; border-radius: 9px; background: linear-gradient(135deg, var(--violet), var(--pink)); display: inline-block; }
+.nav__links { display: flex; gap: 26px; margin-left: auto; color: var(--muted); font-weight: 500; }
+.nav__links a:hover { color: var(--ink); }
+
+.stores { display: flex; gap: 12px; flex-wrap: wrap; }
+.store { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: #fff; padding: 10px 18px; border-radius: 14px; transition: transform .2s; }
+.store:hover { transform: translateY(-2px); }
+.store span { font-size: 22px; }
+.store small { display: block; font-size: 11px; opacity: .7; line-height: 1.1; }
+.store b { font-size: 16px; line-height: 1.1; }
+
+.hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; padding: 40px 0 80px; }
+.hero h1 { font-size: clamp(40px, 5.6vw, 68px); font-weight: 800; margin: 18px 0; }
+.hero h1 span { background: linear-gradient(90deg, var(--violet), var(--pink)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero p { color: var(--muted); font-size: 19px; max-width: 500px; margin-bottom: 30px; }
+.chip { display: inline-flex; gap: 8px; align-items: center; background: var(--soft); color: var(--violet); padding: 7px 14px; border-radius: 999px; font-weight: 700; font-size: 14px; }
+.rating { margin-top: 28px; color: var(--muted); font-size: 14px; }
+.rating b { color: var(--ink); }
+
+/* телефон */
+.phone-wrap { position: relative; display: grid; place-items: center; }
+.blob { position: absolute; width: 420px; height: 420px; border-radius: 42% 58% 60% 40% / 45% 40% 60% 55%; background: linear-gradient(135deg, #e6e0ff, #ffe0ef); animation: morph 10s ease-in-out infinite; }
+@keyframes morph { 50% { border-radius: 58% 42% 40% 60% / 55% 60% 40% 45%; } }
+.phone { position: relative; width: 290px; height: 590px; border-radius: 44px; background: #0f0e24; padding: 12px; box-shadow: 0 40px 80px -30px rgba(23, 21, 58, .6); }
+.screen { height: 100%; border-radius: 34px; background: #faf9ff; padding: 26px 18px; overflow: hidden; }
+.screen__top { display: flex; justify-content: space-between; align-items: center; }
+.screen__top b { font-size: 20px; }
+.ring { width: 54px; height: 54px; border-radius: 50%; background: conic-gradient(var(--violet) 0 72%, #e7e4fb 72%); display: grid; place-items: center; }
+.ring::after { content: "72%"; width: 42px; height: 42px; border-radius: 50%; background: #faf9ff; display: grid; place-items: center; font-size: 12px; font-weight: 800; }
+.days { display: flex; justify-content: space-between; margin: 20px 0; }
+.days span { width: 30px; height: 40px; border-radius: 10px; background: #eeebfd; display: grid; place-items: center; font-size: 12px; font-weight: 700; color: var(--muted); }
+.days .on { background: var(--violet); color: #fff; }
+.habit { display: flex; align-items: center; gap: 12px; background: #fff; border-radius: 16px; padding: 12px; margin-bottom: 10px; box-shadow: 0 4px 14px -8px rgba(23, 21, 58, .25); }
+.habit .em { width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; font-size: 18px; }
+.habit div { flex: 1; font-size: 14px; font-weight: 700; }
+.habit small { display: block; color: var(--muted); font-weight: 500; font-size: 12px; }
+.check { width: 24px; height: 24px; border-radius: 50%; border: 2px solid #d5d1f3; }
+.check.done { background: var(--mint); border-color: var(--mint); }
+.float { position: absolute; background: #fff; border-radius: 16px; padding: 12px 16px; box-shadow: 0 18px 40px -16px rgba(23, 21, 58, .35); font-weight: 700; font-size: 14px; animation: bob 4s ease-in-out infinite; }
+.float small { display: block; color: var(--muted); font-weight: 500; font-size: 12px; }
+.float--1 { left: 0; top: 90px; }
+.float--2 { right: 0; bottom: 110px; animation-delay: -2s; }
+@keyframes bob { 50% { transform: translateY(-10px); } }
+
+.section { padding: 96px 0 0; }
+.section__head { text-align: center; max-width: 640px; margin: 0 auto 48px; }
+.section__head h2 { font-size: clamp(30px, 4vw, 48px); font-weight: 800; margin-top: 14px; }
+.section__head p { color: var(--muted); margin-top: 10px; }
+
+.features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.features article { background: var(--soft); border-radius: 26px; padding: 30px; }
+.features .ic { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; font-size: 24px; background: #fff; margin-bottom: 18px; }
+.features h3 { font-size: 21px; margin-bottom: 6px; }
+.features p { color: var(--muted); }
+
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; counter-reset: n; }
+.steps div { padding: 26px; border: 1.5px solid #e7e4fb; border-radius: 22px; }
+.steps div::before { counter-increment: n; content: "0" counter(n); font-weight: 800; font-size: 36px; color: var(--violet); }
+.steps h3 { margin: 8px 0 6px; }
+.steps p { color: var(--muted); }
+
+.reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.review { border-radius: 22px; padding: 26px; background: #fff; border: 1.5px solid #ecebf6; }
+.review p { margin-bottom: 16px; }
+.review footer { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 14px; }
+.review footer i { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--c1), var(--c2)); display: inline-block; }
+.stars { color: #ffb020; letter-spacing: 2px; margin-bottom: 10px; }
+
+.cta { margin: 96px 0 0; border-radius: 34px; padding: 56px 40px; background: linear-gradient(135deg, var(--violet), var(--pink)); color: #fff; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+.cta h2 { font-size: clamp(28px, 3.6vw, 42px); font-weight: 800; max-width: 560px; }
+.cta .store { background: #fff; color: var(--ink); }
+
+.footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding: 36px 0; color: var(--muted); font-size: 14px; }
+
+.reveal { opacity: 0; transform: translateY(22px); transition: .7s ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; text-align: center; }
+  .hero p { margin-inline: auto; }
+  .stores { justify-content: center; }
+  .features, .steps, .reviews { grid-template-columns: 1fr; }
+  .nav__links { display: none; }
+}
+@media (max-width: 480px) {
+  .blob { width: 320px; height: 320px; }
+  .float { display: none; }
+  .cta { padding: 40px 24px; }
+}
+</style>
+<!--shot-mode--><style>html.shot .reveal{opacity:1!important;transform:none!important;transition:none!important}html.shot .hero.is-full{height:900px!important;min-height:0!important}</style><script>if(location.hash==='#shot')document.documentElement.classList.add('shot')</script>
+</head>
+<body>
+<header class="wrap nav__row">
+  <a href="#" class="logo"><i></i>Habitly</a>
+  <nav class="nav__links"><a href="#features">Возможности</a><a href="#how">Как работает</a><a href="#reviews">Отзывы</a></nav>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <span class="chip">✦ Приложение дня в 12 странах</span>
+      <h1>Привычки, которые <span>остаются с вами</span></h1>
+      <p>Habitly напоминает в нужный момент, считает серии и показывает прогресс — без чувства вины за пропуски.</p>
+      <div class="stores">
+        <a href="#" class="store"><span>🍏</span><div><small>Загрузите в</small><b>App Store</b></div></a>
+        <a href="#" class="store"><span>▶</span><div><small>Доступно в</small><b>Google Play</b></div></a>
+      </div>
+      <p class="rating"><b>4,8 ★</b> · 250 000+ скачиваний</p>
+    </div>
+
+    <div class="phone-wrap" aria-hidden="true">
+      <div class="blob"></div>
+      <div class="phone"><div class="screen">
+        <div class="screen__top"><div><small style="color:#6b6a85">Сегодня</small><br><b>Привет, Аня 👋</b></div><div class="ring"></div></div>
+        <div class="days"><span>Пн</span><span class="on">Вт</span><span class="on">Ср</span><span class="on">Чт</span><span>Пт</span><span>Сб</span><span>Вс</span></div>
+        <div class="habit"><span class="em" style="background:#e7fbf4">💧</span><div>Выпить воду<small>6 из 8 стаканов</small></div><span class="check done"></span></div>
+        <div class="habit"><span class="em" style="background:#f3f1ff">📖</span><div>Читать 20 минут<small>серия 12 дней</small></div><span class="check done"></span></div>
+        <div class="habit"><span class="em" style="background:#ffeef6">🧘</span><div>Медитация<small>в 21:00</small></div><span class="check"></span></div>
+        <div class="habit"><span class="em" style="background:#fff6e5">🏃</span><div>Пробежка<small>3 раза в неделю</small></div><span class="check"></span></div>
+      </div></div>
+      <div class="float float--1">🔥 12 дней подряд<small>новый рекорд</small></div>
+      <div class="float float--2">✅ +3 привычки<small>за эту неделю</small></div>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <div class="section__head reveal"><span class="chip">Возможности</span><h2>Всё для маленьких шагов каждый день</h2></div>
+    <div class="features">
+      <article class="reveal"><div class="ic">⏰</div><h3>Умные напоминания</h3><p>Подстраиваются под ваш ритм и не спамят, если вы уже всё сделали.</p></article>
+      <article class="reveal"><div class="ic">🔥</div><h3>Серии и награды</h3><p>Каждый день без пропуска удлиняет серию. Один пропуск не обнуляет прогресс.</p></article>
+      <article class="reveal"><div class="ic">📊</div><h3>Понятная статистика</h3><p>Видно, в какие дни получается лучше всего и что мешает.</p></article>
+      <article class="reveal"><div class="ic">👯</div><h3>Вместе с друзьями</h3><p>Общие челленджи и поддержка — так проще не бросить.</p></article>
+      <article class="reveal"><div class="ic">🌙</div><h3>Тёмная тема</h3><p>Бережёт глаза вечером и экономит батарею.</p></article>
+      <article class="reveal"><div class="ic">🔒</div><h3>Данные у вас</h3><p>Без рекламы и продажи данных. Синхронизация по желанию.</p></article>
+    </div>
+  </section>
+
+  <section class="section" id="how">
+    <div class="section__head reveal"><span class="chip">Как работает</span><h2>Начать — дело одной минуты</h2></div>
+    <div class="steps">
+      <div class="reveal"><h3>Выберите привычку</h3><p>Из готовых шаблонов или своя — с любым расписанием.</p></div>
+      <div class="reveal"><h3>Отмечайте каждый день</h3><p>Одно касание на экране или прямо из уведомления.</p></div>
+      <div class="reveal"><h3>Смотрите на прогресс</h3><p>Через 21 день привычка закрепится — Habitly покажет это на графике.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="reviews">
+    <div class="section__head reveal"><span class="chip">Отзывы</span><h2>Говорят пользователи</h2></div>
+    <div class="reviews">
+      <article class="review reveal"><div class="stars">★★★★★</div><p>Первое приложение, которое я не удалила через неделю. Серии реально мотивируют.</p><footer><i style="--c1:#6c4cff;--c2:#ff6fae"></i>Марина, 27</footer></article>
+      <article class="review reveal"><div class="stars">★★★★★</div><p>Бросил курить и начал бегать. Статистика по дням недели помогла понять, где срываюсь.</p><footer><i style="--c1:#2ed1a2;--c2:#6c4cff"></i>Алексей, 34</footer></article>
+      <article class="review reveal"><div class="stars">★★★★☆</div><p>Удобно, что можно отметить привычку прямо из уведомления, не открывая приложение.</p><footer><i style="--c1:#ffb020;--c2:#ff6fae"></i>Ольга, 22</footer></article>
+    </div>
+  </section>
+
+  <section class="cta reveal">
+    <h2>Начните первую привычку уже сегодня</h2>
+    <div class="stores">
+      <a href="#" class="store"><span>🍏</span><div><small>Загрузите в</small><b>App Store</b></div></a>
+      <a href="#" class="store"><span>▶</span><div><small>Доступно в</small><b>Google Play</b></div></a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer wrap"><span>© 2026 Habitly</span><span>Демо-проект: вёрстка — Фёдор. Приложение вымышленное.</span></footer>
+
+<script>
+const io = new IntersectionObserver((es) => es.forEach((e) => e.isIntersecting && (e.target.classList.add("is-visible"), io.unobserve(e.target))), { threshold: 0.1 });
+document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Вера Лис — фотограф</title>
+<meta name="description" content="Портреты, путешествия и свадьбы. Фотограф в Москве и в поездках.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root { --bg: #0e0e0e; --ink: #f1ede6; --muted: #9b968d; --line: rgba(241, 237, 230, .14); --gold: #c9a96e; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body { font-family: Inter, system-ui, sans-serif; font-weight: 300; background: var(--bg); color: var(--ink); line-height: 1.6; }
+a { color: inherit; text-decoration: none; }
+img { display: block; width: 100%; }
+h1, h2, h3 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500; line-height: 1.05; }
+.wrap { width: min(1240px, 100% - 32px); margin-inline: auto; }
+
+.nav { position: fixed; inset: 0 0 auto; z-index: 20; mix-blend-mode: difference; }
+.nav__row { display: flex; align-items: center; height: 76px; }
+.logo { font-family: "Cormorant Garamond", serif; font-size: 26px; letter-spacing: .02em; }
+.nav__links { margin-left: auto; display: flex; gap: 30px; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; }
+
+.hero { position: relative; height: 100vh; min-height: 560px; display: grid; align-items: end; }
+.hero img { position: absolute; inset: 0; height: 100%; object-fit: cover; filter: brightness(.62); }
+.hero__text { position: relative; padding-bottom: 72px; }
+.hero h1 { font-size: clamp(56px, 11vw, 168px); }
+.hero h1 i { color: var(--gold); }
+.hero p { max-width: 420px; color: #ddd7cc; margin-top: 12px; }
+.scroll { position: absolute; right: 16px; bottom: 72px; writing-mode: vertical-rl; font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: #cfc8bb; }
+
+.section { padding: 110px 0 0; }
+.head { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; margin-bottom: 36px; }
+.head h2 { font-size: clamp(40px, 6vw, 84px); }
+.filters { display: flex; gap: 8px; flex-wrap: wrap; }
+.filter { background: none; border: 1px solid var(--line); color: var(--muted); padding: 8px 18px; border-radius: 999px; font: inherit; font-size: 14px; cursor: pointer; transition: .2s; }
+.filter:hover { color: var(--ink); }
+.filter.is-active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+.grid { columns: 3 300px; column-gap: 14px; }
+.grid figure { break-inside: avoid; margin-bottom: 14px; position: relative; overflow: hidden; cursor: zoom-in; border-radius: 4px; }
+.grid img { transition: transform .6s ease, filter .4s; }
+.grid figure:hover img { transform: scale(1.04); filter: brightness(.8); }
+.grid figcaption { position: absolute; left: 14px; bottom: 12px; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; opacity: 0; transform: translateY(8px); transition: .3s; }
+.grid figure:hover figcaption { opacity: 1; transform: none; }
+.grid figure.is-hidden { display: none; }
+
+.about { display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: center; }
+.about img { aspect-ratio: 4 / 5; object-fit: cover; border-radius: 4px; }
+.about h2 { font-size: clamp(38px, 5vw, 64px); margin-bottom: 20px; }
+.about p { color: var(--muted); margin-bottom: 14px; max-width: 520px; }
+.about__nums { display: flex; gap: 40px; margin-top: 28px; }
+.about__nums b { font-family: "Cormorant Garamond", serif; font-size: 48px; font-weight: 500; color: var(--gold); display: block; line-height: 1; }
+.about__nums span { color: var(--muted); font-size: 14px; }
+
+.prices { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+.prices article { padding: 34px 28px 34px 0; border-bottom: 1px solid var(--line); }
+.prices article + article { padding-left: 28px; border-left: 1px solid var(--line); }
+.prices h3 { font-size: 32px; }
+.prices .p { font-family: "Cormorant Garamond", serif; font-size: 40px; color: var(--gold); margin: 10px 0; }
+.prices p { color: var(--muted); font-size: 15px; }
+
+.contact { text-align: center; padding: 120px 0 80px; }
+.contact h2 { font-size: clamp(48px, 9vw, 130px); }
+.contact h2 i { color: var(--gold); }
+.contact a.btn { display: inline-block; margin-top: 30px; border: 1px solid var(--ink); padding: 14px 34px; border-radius: 999px; letter-spacing: .12em; text-transform: uppercase; font-size: 14px; transition: .25s; }
+.contact a.btn:hover { background: var(--ink); color: var(--bg); }
+.footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+
+/* лайтбокс */
+.lb { position: fixed; inset: 0; z-index: 50; background: rgba(8, 8, 8, .94); display: none; place-items: center; padding: 24px; }
+.lb.is-open { display: grid; }
+.lb img { max-width: min(1100px, 100%); max-height: 86vh; width: auto; object-fit: contain; }
+.lb button { position: absolute; background: none; border: 0; color: var(--ink); font-size: 34px; cursor: pointer; padding: 12px 18px; }
+.lb .close { top: 12px; right: 12px; }
+.lb .prev { left: 8px; top: 50%; transform: translateY(-50%); }
+.lb .next { right: 8px; top: 50%; transform: translateY(-50%); }
+
+.reveal { opacity: 0; transform: translateY(24px); transition: 1s ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+@media (max-width: 860px) {
+  .about { grid-template-columns: 1fr; }
+  .prices { grid-template-columns: 1fr; }
+  .prices article + article { padding-left: 0; border-left: 0; }
+  .nav__links { gap: 16px; font-size: 12px; }
+  .scroll { display: none; }
+}
+</style>
+<!--shot-mode--><style>html.shot .reveal{opacity:1!important;transform:none!important;transition:none!important}html.shot .hero.is-full{height:900px!important;min-height:0!important}</style><script>if(location.hash==='#shot')document.documentElement.classList.add('shot')</script>
+</head>
+<body>
+<header class="nav"><div class="wrap nav__row"><a href="#" class="logo">Вера Лис</a><nav class="nav__links"><a href="#works">Работы</a><a href="#about">Обо мне</a><a href="#contact">Связь</a></nav></div></header>
+
+<section class="hero is-full">
+  <img src="img/hero.jpg" alt="">
+  <div class="wrap hero__text">
+    <h1>Свет, <i>люди</i><br>и дорога</h1>
+    <p>Снимаю портреты, свадьбы и путешествия. Живая картинка без лишней постановки.</p>
+  </div>
+  <span class="scroll">листайте вниз</span>
+</section>
+
+<main class="wrap">
+  <section class="section" id="works">
+    <div class="head reveal">
+      <h2>Избранное</h2>
+      <div class="filters">
+        <button class="filter is-active" data-f="all">Все</button>
+        <button class="filter" data-f="portrait">Портреты</button>
+        <button class="filter" data-f="travel">Путешествия</button>
+        <button class="filter" data-f="wedding">Свадьбы</button>
+      </div>
+    </div>
+    <div class="grid" id="grid">
+      <figure data-c="travel"><img src="img/p1.jpg" alt="" loading="lazy"><figcaption>Исландия</figcaption></figure>
+      <figure data-c="portrait"><img src="img/p2.jpg" alt="" loading="lazy"><figcaption>Портрет</figcaption></figure>
+      <figure data-c="wedding"><img src="img/p3.jpg" alt="" loading="lazy"><figcaption>Свадьба · Сочи</figcaption></figure>
+      <figure data-c="travel"><img src="img/p4.jpg" alt="" loading="lazy"><figcaption>Грузия</figcaption></figure>
+      <figure data-c="portrait"><img src="img/p5.jpg" alt="" loading="lazy"><figcaption>Студия</figcaption></figure>
+      <figure data-c="travel"><img src="img/p6.jpg" alt="" loading="lazy"><figcaption>Алтай</figcaption></figure>
+      <figure data-c="wedding"><img src="img/p7.jpg" alt="" loading="lazy"><figcaption>Свадьба · Москва</figcaption></figure>
+      <figure data-c="portrait"><img src="img/p8.jpg" alt="" loading="lazy"><figcaption>Портрет на улице</figcaption></figure>
+      <figure data-c="travel"><img src="img/p9.jpg" alt="" loading="lazy"><figcaption>Карелия</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="section about" id="about">
+    <img class="reveal" src="img/me.jpg" alt="" loading="lazy">
+    <div class="reveal">
+      <h2>Привет, я Вера</h2>
+      <p>Восемь лет снимаю людей и места. Люблю естественный свет, честные эмоции и долгие прогулки, во время которых человек забывает о камере.</p>
+      <p>Работаю в Москве и выезжаю в любые города. Готовые фотографии — через 7 дней, первые 10 превью — на следующий день.</p>
+      <div class="about__nums"><div><b>8</b><span>лет в съёмке</span></div><div><b>300+</b><span>съёмок</span></div><div><b>14</b><span>стран</span></div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="head reveal"><h2>Съёмки</h2></div>
+    <div class="prices reveal">
+      <article><h3>Портрет</h3><div class="p">от 9 000 ₽</div><p>1,5 часа, 40+ фото в обработке, помощь с образом и локацией.</p></article>
+      <article><h3>Love story</h3><div class="p">от 14 000 ₽</div><p>2 часа, 60+ фото, две локации на выбор.</p></article>
+      <article><h3>Свадьба</h3><div class="p">от 45 000 ₽</div><p>Весь день, 400+ фото, слайд-шоу и печатная книга.</p></article>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2 class="reveal">Давайте <i>снимать</i></h2>
+    <a href="#" class="btn reveal">Обсудить съёмку</a>
+  </section>
+</main>
+
+<footer class="footer wrap"><span>© 2026 Вера Лис</span><span>Демо-проект: вёрстка — Фёдор. Фотограф вымышленный, фото — <a href="credits.html" style="text-decoration:underline">Wikimedia Commons, авторы и лицензии</a>.</span></footer>
+
+<div class="lb" id="lb" role="dialog" aria-label="Просмотр фото">
+  <button class="close" aria-label="Закрыть">×</button>
+  <button class="prev" aria-label="Назад">‹</button>
+  <img alt="">
+  <button class="next" aria-label="Вперёд">›</button>
+</div>
+
+<script>
+// фильтр
+document.querySelectorAll(".filter").forEach((b) => (b.onclick = () => {
+  document.querySelectorAll(".filter").forEach((x) => x.classList.toggle("is-active", x === b));
+  document.querySelectorAll("#grid figure").forEach((f) => f.classList.toggle("is-hidden", b.dataset.f !== "all" && f.dataset.c !== b.dataset.f));
+}));
+
+// лайтбокс: клик по фото, стрелки, Esc
+const lb = document.getElementById("lb"), lbImg = lb.querySelector("img");
+let list = [], idx = 0;
+const show = (i) => { idx = (i + list.length) % list.length; lbImg.src = list[idx].src; };
+document.querySelectorAll("#grid figure").forEach((f) => (f.onclick = () => {
+  list = [...document.querySelectorAll("#grid figure:not(.is-hidden) img")];
+  show(list.indexOf(f.querySelector("img")));
+  lb.classList.add("is-open");
+}));
+const close = () => lb.classList.remove("is-open");
+lb.querySelector(".close").onclick = close;
+lb.querySelector(".prev").onclick = (e) => { e.stopPropagation(); show(idx - 1); };
+lb.querySelector(".next").onclick = (e) => { e.stopPropagation(); show(idx + 1); };
+lb.onclick = (e) => e.target === lb && close();
+document.addEventListener("keydown", (e) => {
+  if (!lb.classList.contains("is-open")) return;
+  if (e.key === "Escape") close();
+  if (e.key === "ArrowLeft") show(idx - 1);
+  if (e.key === "ArrowRight") show(idx + 1);
+});
+
+const io = new IntersectionObserver((es) => es.forEach((e) => e.isIntersecting && (e.target.classList.add("is-visible"), io.unobserve(e.target))), { threshold: 0.1 });
+document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+</script>
+</body>
+</html>
